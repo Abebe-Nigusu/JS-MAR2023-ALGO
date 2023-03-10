@@ -46,7 +46,7 @@ const nums4 = [2, 1];
  * pivot to be to it's left and all larger numbers to the right of the pivot.
  * - Time: O(?).
  * - Space: O(?).
- * @see https://www.hackerearth.com/practice/algorithms/sorting/quick-sort/visualize/
+ * @see num
  *    visualization of quickSort. Focus only on the first cycle of the visualization
  *    for the partition portion only.
  * @param {Array<number>} nums
@@ -56,13 +56,50 @@ const nums4 = [2, 1];
  *    being processed.
  * @returns {Array<number>} The idx where left section of smaller items ends.
  */
-function partition(nums = [], left = 0, right = nums.length - 1) {}
-
-
-
-function quickSort(nums) {
+function partition(nums = [], left = 0, right = nums.length - 1) {
+  const pivot = nums[Math.floor(nums.length / 2)]
+  const leftArr = []
+  const rightArr = []
+  for(let i = 0; i < nums.length ; i++){
+    if(i === nums[Math.floor(nums.length / 2)]){
+      continue
+    }
+    if(nums[i] >= pivot){
+      rightArr.push(nums[i])
+    }else{
+      leftArr.push(nums[i])
+    }
+  }
+  leftArr.push(pivot) 
+  console.log(pivot)
+  return leftArr.concat(rightArr)
   
 }
 
+// console.log(partition(nums1))
+// console.log(partition(nums2))
+// console.log(partition(nums3))
+// console.log(partition(nums4))
+
+function partition2(nums = [], left = 0, right = nums.length - 1) {
+  let pivot = nums[Math.floor((left + right) / 2)]
 
 
+  while (left <= right) {
+    while (nums[left] < pivot) {
+      left++;
+    }
+    while (nums[right] > pivot) {
+      right--;
+    }
+    if (left <= right) {
+      let temp = nums[left]
+      nums[left] = nums[right]
+      nums[right] = temp
+      left++
+      right--
+    }
+  }
+  console.log(nums)
+  return left;
+}
