@@ -38,7 +38,7 @@ function orderedIntersection(sortedA, sortedB) {
 
 // For Union
 const numsA4 = [1, 2, 2, 2, 7];
-const numsB4 = [2, 2, 6, 6, 7];
+const numsB4 = [2, 2, 6, 6, 7]; 
 const expected4 = [1, 2, 2, 2, 6, 6, 7];
 
 const numsA5 = [1, 2, 2, 2, 7, 10, 15, 20];
