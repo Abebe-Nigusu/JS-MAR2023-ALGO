@@ -6,9 +6,9 @@
     - top right to bottom left diagonal
 */
 
-// matrix[1][2] = 6
+// 2darray = [ [1, 2, 3], [4, 5, 6], [7, 8, 9] ]
 const squareMatrix1 = [
-    [1, 2, 3],  // [r][c]
+    [1, 2, 3],  // [r][c]      
     [4, 5, 6],
     [9, 8, 9],
   ];
@@ -47,7 +47,7 @@ const squareMatrix1 = [
    *    bottom right diagonal and the top right to bottom left diagonal.
    */
   function diagonalDifference(sqrMatrix) {
-   
+    
   }
   
 
