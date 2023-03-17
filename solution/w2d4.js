@@ -19,7 +19,7 @@ const expected4 = 4;
 const riverLevels5 = [5, 1];
 const expected5 = -1;
 
-const riverLevels6 = [9, 7, 7, 7];
+const riverLevels6 = [7, 7, 7];
 const expected6 = -1;
 
 const riverLevels7 = [42];
@@ -34,4 +34,27 @@ const expected7 = -1;
  * @param {Array<number>} waterLevels Non-empty .
  * @returns {number} The max water-level rise amount or -1 if none.
  */
-function measureWaterLevels(waterLevels) {}
+function measureWaterLevels(waterLevels) {
+  let diff = -1
+  let [i, j] = [0, 1]
+  while(j < waterLevels.length){
+    if(waterLevels[i] < waterLevels[j]){ // if it is a rise
+      if(waterLevels[j]-waterLevels[i] > diff){ // if the rise > diff
+        diff = waterLevels[j]-waterLevels[i]
+      }
+      j++
+    }else if(waterLevels[j]<=waterLevels[j-1]){ // if it is a decrement
+      i = j // reset smallest number
+      j++
+    }
+  }
+  return diff
+}
+
+console.log(measureWaterLevels(riverLevels1))
+console.log(measureWaterLevels(riverLevels2))
+console.log(measureWaterLevels(riverLevels3))
+console.log(measureWaterLevels(riverLevels4))
+console.log(measureWaterLevels(riverLevels5))
+console.log(measureWaterLevels(riverLevels6))
+console.log(measureWaterLevels(riverLevels7))
