@@ -30,7 +30,8 @@ const targetSum3 = 6;
  * @returns {Array<number>} The two indexes of the numbers in the given nums
  *    that add up to the targetSum.
  */
-function twoSum(nums, targetSum) {}
+function twoSum(nums, targetSum) {
+}
 
 
 
