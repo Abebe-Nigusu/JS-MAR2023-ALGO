@@ -7,6 +7,28 @@
   programming.
 */
 
+/* both functions pulled from yesterday (w3d1)
+  function entries(obj) {
+    for(const eachKey in obj){
+      obj.hasOwnProperty(eachKey)?
+        console.log(`${eachKey}: ${obj[eachKey]}`):
+        null
+    }
+  }
+
+    function insert(tableName, columnValuePairs) {
+    const keys = []
+    const values = []
+    for(const eachKey in columnValuePairs){
+      keys.push(eachKey)
+      typeof columnValuePairs[eachKey] === 'string' ?
+        values.push(`'${columnValuePairs[eachKey]}'`) :
+        values.push(columnValuePairs[eachKey])
+    }
+    console.log(`INSERT INTO ${tableName} (${keys}) VALUES (${values})`)
+  }
+*/
+
 const users = [
     { firstName: "Bob", lastName: "Bobbert", age: 31 }, 
     { firstName: "John", lastName: "Smith", age: 25 },
@@ -30,13 +52,60 @@ const users = [
   //   { firstName: "John", lastName: "Smith", age: 25 },
   //   { firstName: "Bob", lastName: "Smith", age: 27 },
   // ];
+
+// for (let i = 0; i < collection.length; i++) {
+//       console.log(i)
+//       for (const eachKey in collection[]) {
+//         collection.hasOwnProperty(eachKey)?
+//         console.log(`${eachKey}: ${collection[eachKey]}`):
+//         null;
   
-  
+/* collection [
+    { firstName: "Bob", lastName: "Bobbert", age: 31 }, 
+    { firstName: "John", lastName: "Smith", age: 25 },
+    { firstName: "Bob", lastName: "Smith", age: 27 }, 
+    { firstName: "Bob", lastName: "White", age: 31 }, 
+  ];
+*/
+
+// collection[i] : { firstName: "Bob", lastName: "Bobbert", age: 31 }
+// eachKey : firstName
+// criteria : { firstName: "Bob", age: 31 }
+
   function findObjects(criteria, collection) {
+    foundCriteria = [];
+    let matching = true
+    // console.log(collection)
+    for (let i = 0; i < collection.length; i++) {
+      for (const eachKey in criteria) {
+        matching = true
+        if (criteria[eachKey] !== collection[i][eachKey]) {
+          matching = false
+        }
+      }
+      if(matching){
+          foundCriteria.push(collection[i])
+      }
+    }
+    return foundCriteria
   }
-  
-  function findObjectsFunctional(criteria, collection) {} // .map, .filter , .key , value
-  
+
+console.log(findObjects(searchCriteria1, users))
+//console.log(findObjects(searchCriteria2, users))
+
+
+function findObjectsFunctional(criteria, collection) {
+  return collection.map((eachObj) => {
+    if (Object.entries(criteria).every(([eachKey, eachVal]) => eachObj[eachKey] === eachVal)) {
+      return eachObj
+    }
+  })
+}
+
+const functionalFindObjects = (criteria, collection) =>
+  collection.filter((item) =>
+    Object.keys(criteria).every((key) => item[key] === criteria[key])
+  );
   
   
   /* 
@@ -107,7 +176,17 @@ const users = [
   const updateData3 = {};
   const expected3 = null;
   
-  
   function findByIdAndUpdate(id, updatedVals, collection) {
+    for(const eachItem of collection){
+      if(eachItem.id == id){
+        for(const key in updatedVals){
+          if(eachItem.hasOwnProperty(key)){
+            const value = updatedVals[key]
+            eachItem[key] = value
+          }
+        }
+        return eachItem
+      }
     }
-  
+  return null
+  }

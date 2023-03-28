@@ -40,6 +40,15 @@ for(const eachKey in petWithProto){
 
 console.log(Object.entries(petWithProto))
 
+const test = "Test"
+console.log(test.toLowerCase())
+console.log(test.toUpperCase())
+
+
+for (const eachItem of test) {
+  console.log(eachItem)
+}
+
 
 
 

@@ -28,3 +28,9 @@ const errorResponseData = { // in .catch(err=> err.response.data.errors)
     }
 
 const errMsgArr =[]
+
+for(const eachKey in errorResponseData){
+  errMsgArr.push(errorResponseData[eachKey].message)
+}
+
+console.log(errMsgArr)
